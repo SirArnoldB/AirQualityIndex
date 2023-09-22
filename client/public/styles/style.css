@@ -1,0 +1,122 @@
+/* Landing styles */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  /* This will make the landing container fit the entire viewport */
+  height: 100vh;
+  /* This will include padding and border in the element's total height and width */
+  box-sizing: border-box;
+
+}
+
+.landing-container img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.landing-container button {
+  background-color: #007BFF;
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.landing-container button:hover {
+  background-color: #0056b3;
+}
+
+/* AQI Categories Colors */
+.good {
+  background-color: #009966;
+}
+
+.moderate {
+  background-color: #ffde33;
+}
+
+.unhealthy-for-sensitive-groups {
+  background-color: #ff9933;
+}
+
+.unhealthy {
+  background-color: #cc0033;
+}
+
+.very-unhealthy {
+  background-color: #660099;
+}
+
+.hazardous {
+  background-color: #7e0023;
+}
+
+/* AQI Card Styles */
+.aqi-container {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.aqi-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.aqi-card {
+  /* background-color: #fff; */
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: calc(33.33% - 20px);
+  box-sizing: border-box;
+}
+
+.aqi-card h3 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.aqi-card p {
+  font-size: 16px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.aqi-card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.aqi-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 404 Page CSS */
+
+.fof-container {
+  display: table;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  color: black;
+}
+
+.fof {
+  display: table-cell;
+  vertical-align: middle;
+}
