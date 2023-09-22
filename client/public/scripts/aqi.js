@@ -72,5 +72,12 @@ const renderAqi = async (aqi) => {
     main.appendChild(aqiContainer);
 };
 
-renderAqi();
+// renderAqi();
+
+const requestedURL = window.location.href.split('/').pop();
+if (requestedURL === '') {
+    renderAqi();
+} else {
+    window.location = `/public/404.html`;
+}
 

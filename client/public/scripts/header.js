@@ -1,14 +1,13 @@
 // header container
-const header = document.querySelector('header');
+const header = document.querySelector('nav');
 const headerContainer = document.createElement('div');
 headerContainer.classList.add('header-container');
 
 // header left 
-const headerLeft = document.createElement('div');
-headerLeft.classList.add('header-left');
+const headerLeft = document.querySelector('.header-left');
 
 const headerLogo = document.createElement('img');
-headerLogo.src = '/public/images/aqi-logo-favicon.png';
+headerLogo.src = '/images/aqi-logo-favicon.png';
 
 // header title
 const headerTitlte = document.createElement('h1');
@@ -18,8 +17,7 @@ headerLeft.appendChild(headerLogo);
 headerLeft.appendChild(headerTitlte);
 
 // header right
-const headerRight = document.createElement('div');
-headerRight.classList.add('header-right');
+const headerRight = document.querySelector('.header-right');
 
 // Explore AQIs button
 const exploreAQIsButton = document.createElement('button');
