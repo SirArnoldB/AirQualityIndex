@@ -1,4 +1,4 @@
-# WEB103 Project 1 - *Air Quality Index*
+# WEB103 Project 1 - _Air Quality Index_
 
 Submitted by: **Arnold Bhebhe**
 
@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [x] **The web app displays a title**
 - [x] **The web app displays at least five list items, each with at least three attributes (such as title, text, and image url)**
 - [x] **The user can click on each item in the list to see a detailed view of it, including all database fields**
-  - [x] Shows the unique URL for each detailed view 
+  - [x] Shows the unique URL for each detailed view
 - [x] **The web app serves an appropriate 404 page when no matching route is defined**
 - [x] **The web app is appropriately styled using Picocss**
 
