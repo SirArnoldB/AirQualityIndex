@@ -1,4 +1,5 @@
 import express from 'express';
+import './config/dotenv.js';
 import aqiRouter from './routes/aqi.js'
 
 // Initialize the app

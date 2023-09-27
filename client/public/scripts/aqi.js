@@ -1,12 +1,8 @@
-const renderAqi = async (aqi) => {
+const renderAqi = async () => {
 
     // Get the aqi data from the server, using the fetch API
     const response = await fetch('/aqi');
     const aqiData = await response.json();
-
-    // get the aqi categories from the server, using the fetch API
-    const response2 = await fetch('/aqi/categories');
-    const aqiCategories = await response2.json();
 
     // Render the aqi data in the main container
     const main = document.querySelector('#main-content');
@@ -27,33 +23,24 @@ const renderAqi = async (aqi) => {
     aqiCardsContainer.classList.add('aqi-cards-container');
 
     // aqi cards
-    for (const city in aqiData) {
-        const cityData = JSON.parse(aqiData[city]);
-
-        let cityAqiCategory = '';
-        for (const category of aqiCategories) {
-            if (cityData.overall_aqi >= category.range[0] && cityData.overall_aqi <= category.range[1]) {
-                cityAqiCategory = category.name;
-                break;
-            }
-        }
+    aqiData.forEach((cityData) => {
 
         const aqiCard = document.createElement('div');
         aqiCard.classList.add('aqi-card');
 
         const aqiName = document.createElement('h3');
-        aqiName.innerText = city;
+        aqiName.innerText = cityData.city_name;
 
         const aqiOverall = document.createElement('p');
         aqiOverall.innerText = `Overall AQI: ${cityData.overall_aqi}`;
 
         const aqiCategory = document.createElement('p');
-        aqiCategory.innerText = `AQI Category: ${cityAqiCategory}`;
+        aqiCategory.innerText = `AQI Category: ${cityData.aqi_category}`;
 
         const exploreButton = document.createElement('button');
         exploreButton.innerText = 'Explore';
         exploreButton.addEventListener('click', () => {
-            window.location = `/aqi/${city}`;
+            window.location = `/aqi/${cityData.id}/${cityData.city_name}`;
         })
 
         aqiCard.appendChild(aqiName);
@@ -61,10 +48,10 @@ const renderAqi = async (aqi) => {
         aqiCard.appendChild(aqiCategory);
         aqiCard.appendChild(exploreButton);
 
-        aqiCard.classList.add(cityAqiCategory.toLowerCase().replace(/\s/g, '-'));
+        aqiCard.classList.add(cityData.aqi_category?.toLowerCase().replace(/\s/g, '-'));
 
         aqiCardsContainer.appendChild(aqiCard);
-    }
+    })
 
     aqiContainer.appendChild(aqiTitle);
     aqiContainer.appendChild(aqiCardsContainer);
@@ -72,12 +59,11 @@ const renderAqi = async (aqi) => {
     main.appendChild(aqiContainer);
 };
 
-// renderAqi();
 
 const requestedURL = window.location.href.split('/').pop();
-if (requestedURL === '') {
-    renderAqi();
+if (requestedURL) {
+    window.location = `/404.html`;
 } else {
-    window.location = `/public/404.html`;
+    renderAqi();
 }
 

@@ -1,14 +1,11 @@
 const renderAqiDetails = async () => {
-    const aqiId = window.location.href.split('/').pop();
+
+    // Get the aqi id from the url
+    const aqiId = window.location.href.split('/').at(-2);
 
     // Get the aqi data from the server, using the fetch API
-    const response = await fetch('/aqi');
-    const aqiData = await response.json();
-    const aqiCityData = JSON.parse(aqiData[aqiId]);
-
-    // get the aqi categories from the server, using the fetch API
-    const response2 = await fetch('/aqi/categories');
-    const aqiCategories = await response2.json();
+    const response = await fetch(`/aqi/${aqiId}`);
+    const aqiCityData = await response.json();
 
     // Render the aqi data in the main container
     const main = document.querySelector('#main-content');
@@ -20,7 +17,7 @@ const renderAqiDetails = async () => {
 
     // aqi title
     const aqiTitle = document.createElement('h2');
-    aqiTitle.innerText = `${aqiId} Air Quality Index`;
+    aqiTitle.innerText = `${aqiCityData.city_name} Air Quality Index`;
     aqiTitle.id = 'explore-aqis-section';
     aqiTitle.classList.add('aqi-title');
 
@@ -29,21 +26,13 @@ const renderAqiDetails = async () => {
     aqiCard.classList.add('aqi-card');
 
     const aqiName = document.createElement('h3');
-    aqiName.innerText = aqiId;
+    aqiName.innerText = aqiCityData.city_name;
 
     const aqiOverall = document.createElement('p');
     aqiOverall.innerText = `Overall AQI: ${aqiCityData.overall_aqi}`;
 
-    let aqiCategory = '';
-    for (const category of aqiCategories) {
-        if (aqiCityData.overall_aqi >= category.range[0] && aqiCityData.overall_aqi <= category.range[1]) {
-            aqiCategory = category.name;
-            break;
-        }
-    }
-
     const aqiCategoryElement = document.createElement('p');
-    aqiCategoryElement.innerText = `AQI Category: ${aqiCategory}`;
+    aqiCategoryElement.innerText = `AQI Category: ${aqiCityData.aqi_category}`;
 
     // Pollutants container
     const pollutantsContainer = document.createElement('div');
@@ -65,10 +54,10 @@ const renderAqiDetails = async () => {
     carbonMonoxideName.innerText = 'Carbon Monoxide (CO)';
 
     const carbonMonoxideConcentration = document.createElement('p');
-    carbonMonoxideConcentration.innerText = `Concentration: ${aqiCityData.CO.concentration}`;
+    carbonMonoxideConcentration.innerText = `Concentration: ${aqiCityData.co_concentration}`;
 
     const carbonMonoxideAqi = document.createElement('p');
-    carbonMonoxideAqi.innerText = `AQI: ${aqiCityData.CO.aqi}`;
+    carbonMonoxideAqi.innerText = `AQI: ${aqiCityData.co_aqi}`;
 
     carbonMonoxideCard.appendChild(carbonMonoxideName);
     carbonMonoxideCard.appendChild(carbonMonoxideConcentration);
@@ -82,10 +71,10 @@ const renderAqiDetails = async () => {
     nitrogenDioxideName.innerText = 'Nitrogen Dioxide (NO2)';
 
     const nitrogenDioxideConcentration = document.createElement('p');
-    nitrogenDioxideConcentration.innerText = `Concentration: ${aqiCityData.NO2.concentration}`;
+    nitrogenDioxideConcentration.innerText = `Concentration: ${aqiCityData.no2_concentration}`;
 
     const nitrogenDioxideAqi = document.createElement('p');
-    nitrogenDioxideAqi.innerText = `AQI: ${aqiCityData.NO2.aqi}`;
+    nitrogenDioxideAqi.innerText = `AQI: ${aqiCityData.no2_aqi}`;
 
     nitrogenDioxideCard.appendChild(nitrogenDioxideName);
     nitrogenDioxideCard.appendChild(nitrogenDioxideConcentration);
@@ -99,10 +88,10 @@ const renderAqiDetails = async () => {
     ozoneName.innerText = 'Ozone (O3)';
 
     const ozoneConcentration = document.createElement('p');
-    ozoneConcentration.innerText = `Concentration: ${aqiCityData.NO2.concentration}`;
+    ozoneConcentration.innerText = `Concentration: ${aqiCityData.o3_concentration}`;
 
     const ozoneAqi = document.createElement('p');
-    ozoneAqi.innerText = `AQI: ${aqiCityData.NO2.aqi}`;
+    ozoneAqi.innerText = `AQI: ${aqiCityData.o3_aqi}`;
 
     ozoneCard.appendChild(ozoneName);
     ozoneCard.appendChild(ozoneConcentration);
@@ -116,10 +105,10 @@ const renderAqiDetails = async () => {
     sulfurDioxideName.innerText = 'Sulfur Dioxide (SO2)';
 
     const sulfurDioxideConcentration = document.createElement('p');
-    sulfurDioxideConcentration.innerText = `Concentration: ${aqiCityData.SO2.concentration}`;
+    sulfurDioxideConcentration.innerText = `Concentration: ${aqiCityData.so2_concentration}`;
 
     const sulfurDioxideAqi = document.createElement('p');
-    sulfurDioxideAqi.innerText = `AQI: ${aqiCityData.SO2.aqi}`;
+    sulfurDioxideAqi.innerText = `AQI: ${aqiCityData.so2_aqi}`;
 
     sulfurDioxideCard.appendChild(sulfurDioxideName);
     sulfurDioxideCard.appendChild(sulfurDioxideConcentration);
@@ -134,10 +123,10 @@ const renderAqiDetails = async () => {
 
     const pm2_5Concentration = document.createElement('p');
     // concentration has PM2.5.concentration
-    pm2_5Concentration.innerText = `Concentration: ${aqiCityData['PM2.5'].concentration}`;
+    pm2_5Concentration.innerText = `Concentration: ${aqiCityData.pm25_oncentration}`;
 
     const pm2_5Aqi = document.createElement('p');
-    pm2_5Aqi.innerText = `AQI: ${aqiCityData['PM2.5'].aqi}`;
+    pm2_5Aqi.innerText = `AQI: ${aqiCityData.pm25_aqi}`;
 
     pm2_5Card.appendChild(pm2_5Name);
     pm2_5Card.appendChild(pm2_5Concentration);
@@ -151,10 +140,10 @@ const renderAqiDetails = async () => {
     pm10Name.innerText = 'PM10';
 
     const pm10Concentration = document.createElement('p');
-    pm10Concentration.innerText = `Concentration: ${aqiCityData.PM10.concentration}`;
+    pm10Concentration.innerText = `Concentration: ${aqiCityData.pm10_concentration}`;
 
     const pm10Aqi = document.createElement('p');
-    pm10Aqi.innerText = `AQI: ${aqiCityData.PM10.aqi}`;
+    pm10Aqi.innerText = `AQI: ${aqiCityData.pm10_aqi}`;
 
     pm10Card.appendChild(pm10Name);
     pm10Card.appendChild(pm10Concentration);

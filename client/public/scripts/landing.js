@@ -18,7 +18,7 @@ landingImage.src = './images/aqi-logos/png/logo-no-background.png';
 const actionButton = document.createElement('button');
 actionButton.innerText = 'Explore AQIs';
 actionButton.addEventListener('click', () => {
-    window.location = '/#explore-aqis-section'; // assuming this is the ID of your AQIs section
+    window.location = '/#explore-aqis-section';
 })
 
 landingContainer.appendChild(landingImage);
