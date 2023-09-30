@@ -1,12 +1,17 @@
-# WEB103 Project 1 - _Air Quality Index_
+# WEB103 Project 1 & 2 - _Air Quality Index_
 
 Submitted by: **Arnold Bhebhe**
 
 About this web app: **Air Quality Indexes for the World Capitals**
 
-Time spent: **8** hours
+Time spent:
+
+- Project 1: **8** hours
+- Project 2: **7** hours
 
 ## Required Features
+
+### Project 1
 
 The following **required** functionality is completed:
 
@@ -26,6 +31,21 @@ The following **additional** features are implemented:
 
 - [x] Each Air Quality Index Card has a color that corresponds to its category.
 
+### Project 2
+
+The following **required** functionality is completed:
+
+<!-- Make sure to check off completed functionality below -->
+
+- [x] **The web app uses only HTML, CSS, and JavaScript without a frontend framework**
+- [x] **The web app is connected to a PostgreSQL database, with an appropriately structured database table for the list items**
+- [x] **The PostgreSQL database includes a table that matches the data displayed in the web app**
+  - [x] **NOTE: Your GIF or a screenshot added to the README must include a view of your Railway database that shows the contents of the table used by your app**
+
+The following **optional** features are implemented:
+
+- [x] The user can search for items with a city name, AQI, or category.
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented required features:
@@ -36,7 +56,8 @@ GIF created with ... 👉🏿 [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-- First time using PicoCSS.
+- First time using PicoCSS for styling.
+- First time using Railway for PostgreSQL database hosting.
 
 ## License
 

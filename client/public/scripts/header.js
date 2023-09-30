@@ -23,7 +23,7 @@ const headerRight = document.querySelector('.header-right');
 const exploreAQIsButton = document.createElement('button');
 exploreAQIsButton.innerText = 'Explore AQIs';
 exploreAQIsButton.addEventListener('click', () => {
-    window.location = '/';
+    window.location = '/#explore-aqis-section';
 })
 
 headerRight.appendChild(exploreAQIsButton);
